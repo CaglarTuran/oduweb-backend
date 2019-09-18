@@ -23,4 +23,4 @@ const initializeErrorRoutes = (app) => {
   });
 };
 /* */
-module.exports = initializeRoutes;
+module.exports = initializeRoutes, initializeErrorRoutes;

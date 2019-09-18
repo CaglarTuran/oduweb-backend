@@ -3,7 +3,7 @@ const initializePassport = require('./passport');
 const initializeRoutes = require('./routes');
 const initializeErrorRoutes = require('./routes');
 
-const app = initializeExpressApp()
+const app = initializeExpressApp();
 
 initializePassport(app);
 initializeRoutes(app);
