@@ -1,16 +1,16 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-module.exports = sequelize = new Sequelize('DeepJupiter', 'postgres', '123qaz', {
+const sequelize = new Sequelize('DeepJupiter', 'postgres', '123qaz', {
   host: 'localhost',
   dialect: 'postgres',
-
   pool: {
     max: 5,
     min: 0,
-    idle: 10000
+    idle: 10000,
   },
-
 });
+
+module.exports = sequelize;
 /*
 Database port : 5432
 Database Superuser : postgres

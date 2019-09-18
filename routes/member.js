@@ -1,36 +1,34 @@
-const express = require ('express');
-var passport = require('passport');
-const isAuthenticated = require ('../middlewares/auth');
+const express = require('express');
+const passport = require('passport');
 
-var router = express.Router();
+const router = express.Router();
 
-router.get('/me', function(req, res, next){
+router.get('/me', (req, res) => {
   res.status(200).send(req.user);
 });
 
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if(err){
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user) => {
+    if (err) {
       return next(err);
     }
 
-    if(!user) {
-      return res.status(200).send( { error: 'unauthorized'}).end();
+    if (!user) {
+      return res.status(200).send({ error: 'unauthorized' }).end();
     }
 
-    req.logIn(user, function(err){
-      if(err) {
-        return next(err);
+    return req.logIn(user, (loginError) => {
+      if (loginError) {
+        return next(loginError);
       }
-      return res.status(200).send( { user: user}).end();
+      return res.status(200).send({ user }).end();
     });
-
   })(req, res, next);
 });
 
-router.get('/logout', function(req, res){
+router.get('/logout', (req, res) => {
   req.logout();
-  res.status(200).send({ success : true })
+  res.status(200).send({ success: true });
 });
 
 module.exports = router;

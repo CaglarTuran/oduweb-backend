@@ -1,18 +1,19 @@
-var memberRouter = require ('./member');
-var createError = require('http-errors');
+const createError = require('http-errors');
+const memberRouter = require('./member');
 
 
-var initializeRoutes = app => {
+const initializeRoutes = (app) => {
   app.use('/member', memberRouter);
 };
-
-var initializeErrorRoutes = app => {
-  app.use(function(req, res, next) {
+/* eslint-disable no-unused-vars */
+const initializeErrorRoutes = (app) => {
+  /* eslint-enable no-unused-vars */
+  app.use((req, res, next) => {
     next(createError(404));
   });
 
   // error handler
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res) => {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -21,5 +22,5 @@ var initializeErrorRoutes = app => {
     return res.status(err.status || 500).send();
   });
 };
-
-module.exports = initializeRoutes,initializeErrorRoutes;
+/* */
+module.exports = initializeRoutes;
