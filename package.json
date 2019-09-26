@@ -8,12 +8,12 @@
     "lint": "./node_modules/.bin/eslint .",
     "fix-lint": "./node_modules/.bin/eslint --fix .",
     "test": "./node_modules/.bin/eslint --fix .",
-    "bar": "echo \"bar\" && exit 0"
+    "test": "echo \"Error: I SHOULD FAIL LOLOLOLOLOL \" && exit 1"
   },
   "pre-push": [
     "lint",
     "test",
-    "bar"
+    "test"
   ],
   "dependencies": {
     "body-parser": "^1.19.0",
