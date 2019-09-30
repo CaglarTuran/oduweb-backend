@@ -15,5 +15,9 @@
         "sourceType": "module"
     },
     "rules": {
+      "no-console" : "off",
+      "no-use-before-define" : "off",
+      "no-shadow" : "off",
+      "no-restricted-globals" : "off"
     }
 }
