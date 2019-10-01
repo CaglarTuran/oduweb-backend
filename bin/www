@@ -5,7 +5,8 @@
  */
 
 const debug = require('debug')('oduweb-backend:server');
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const app = require('../server');
 
 /**
@@ -19,7 +20,15 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+/* const server = http.createServer(app); */
+
+
+const server = https.createServer({
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  passphrase: '123qaz',
+}, app);
+
 
 /**
  * Listen on provided port, on all network interfaces.
